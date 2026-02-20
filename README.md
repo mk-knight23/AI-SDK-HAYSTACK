@@ -1,47 +1,80 @@
 # AI-SDK-HAYSTACK
 
 [![AI-SDK Ecosystem](https://img.shields.io/badge/AI--SDK-ECOSYSTEM-part%20of-blue)](https://github.com/mk-knight23/AI-SDK-ECOSYSTEM)
+[![Haystack](https://img.shields.io/badge/Haystack-2.0-11a36a8)](https://haystack.deepset.ai/)
+[![Nuxt 3](https://img.shields.io/badge/Nuxt-3.15-green)](https://nuxt.com/)
+[![Django](https://img.shields.io/badge/Django-5.1-green)](https://www.djangoproject.com/)
 
-> **Framework**: Haystack
+> **Framework**: Haystack (Document AI & Extractive QA)
+> **Stack**: Nuxt 3 + Django
 
-Production-ready Haystack SDK implementation with modern web stack.
+---
 
-## Tech Stack
+## 🎯 Project Overview
 
-- **Frontend**: Nuxt 3
-- **Backend**: Django
-- **AI SDK**: Haystack
+**AI-SDK-HAYSTACK** demonstrates industrial document AI with extractive question answering and hybrid retrieval. It showcases Haystack 2.0 for building production search systems, RAG pipelines, and document intelligence applications.
 
-## Quick Start
+### Key Features
+
+- 🔍 **Extractive QA** - Pinpoint answers in large documents
+- 📄 **Document Processing** - PDF, DOCX, TXT parsing
+- 🎯 **Hybrid Retrieval** - BM25 + DPR for optimal results
+- 🔗 **Elasticsearch** - Scalable document storage
+- 🔄 **RAG Pipeline** - Production retrieval-augmented generation
+
+---
+
+## 🛠 Tech Stack
+
+| Technology | Purpose |
+|-------------|---------|
+| Nuxt 3 | Frontend framework |
+| Django | Backend API |
+| Haystack 2.0 | AI framework |
+| Elasticsearch | Document search |
+| Naive UI | Components |
+| Celery | Background tasks |
+
+---
+
+## 🚀 Quick Start
 
 ```bash
 # Frontend
-cd frontend
-npm install
-npm run dev
+cd frontend && npm install && npm run dev
 
 # Backend
-cd backend
-python manage.py migrate
-python manage.py runserver
+cd backend && python manage.py migrate && python manage.py runserver
 ```
 
-## Features
+---
 
-- Haystack NLP framework
-- RESTful API endpoints
-- Docker containerization
-- CI/CD pipeline
-- Test coverage configured
+## 🔌 API Integrations
 
-## Deployment
+| Provider | Usage |
+|----------|-------|
+| Mistral | Embeddings |
+| Deepgram | Audio input |
+| iLovePDF | PDF conversion |
+| ConvertAPI | Document processing |
 
-See DEPLOYMENT.md for deployment instructions.
+---
 
-## License
+## 📦 Deployment
 
-MIT License - see LICENSE for details.
+**Render** (Backend) + **Netlify** (Frontend)
 
-## Part of AI-SDK Ecosystem
+```bash
+railway up  # backend
+netlify deploy  # frontend
+```
 
-This repository is part of the [AI-SDK Ecosystem](https://github.com/mk-knight23/AI-SDK-ECOSYSTEM).
+---
+
+## 📝 License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+---
+
+**Part of the [AI-SDK Ecosystem](https://github.com/mk-knight23/AI-SDK-ECOSYSTEM)**
