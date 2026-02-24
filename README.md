@@ -1,15 +1,15 @@
-# 🌾 Haystack 2.0 SDK
+🌾 Haystack NLP Framework
 
 [![Status](https://img.shields.io/badge/Status-Beta-yellow.svg)]()
 [![Version](https://img.shields.io/badge/Version-0.1.0-blue.svg)]()
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-success.svg)]()
 [![Coverage](https://img.shields.io/badge/Coverage-80%25-brightgreen.svg)]()
-[![Platform](https://img.shields.io/badge/Platform-Render-informational.svg)](https://render.com/)
+[![Platform](https://img.shields.io/badge/Platform-render-informational.svg)](https://render.com/)
 
 ## 📋 Overview
 
-Haystack 2.0 retrieval-augmented generation with Nuxt and Django
+NLP pipelines with Haystack, React, and Django
 
 **Current Version:** 0.1.0 | **Status:** Beta | **Completion:** 75%
 
@@ -17,9 +17,9 @@ Haystack 2.0 retrieval-augmented generation with Nuxt and Django
 
 ## 📖 About The Project
 
-### What is Haystack 2.0 SDK?
+### What is Haystack NLP Framework?
 
-Production-ready RAG pipeline using Haystack 2.0. Features document indexing, semantic search, hybrid retrieval, and advanced LLM chaining for question-answering systems.
+A production-ready NLP framework application showcasing Haystack's powerful capabilities for building building NLP pipelines and search. This project demonstrates enterprise-grade patterns for AI-native application development.
 
 ### Why This Project Exists?
 
@@ -37,20 +37,23 @@ Building AI applications requires integrating multiple complex systems:
 - Context persistence and memory management
 - Vector database operations for RAG
 - Real-time streaming responses
-- Multi-agent orchestration
+- document processing and search
 
 This project provides a complete, working solution to these challenges.
 
 ### Key Features
 
 ✨ **Haystack Integration**
-- Full-featured Haystack v2.11.0 integration
-- Production-ready error handling and retries
-- Streaming and non-streaming response modes
-- Advanced prompt engineering templates
+- Full-featured Haystack 2.x integration
+- Document indexing pipelines
+- Semantic search with vector stores
+- Retrieval-Augmented Generation (RAG)
+- Custom component pipelines
+- Multiple LLM provider support
+- Document store integrations
 
 🎨 **Modern UI**
-- Nuxt v3.0.0 with TypeScript
+- Modern React-based frontend with TypeScript
 - Responsive design with dark mode
 - Real-time updates via WebSocket
 - Accessible components (WCAG 2.1 AA)
@@ -88,25 +91,25 @@ This project provides a complete, working solution to these challenges.
 
 | Technology | Version | Description |
 |------------|---------|-------------|
-| [![Nuxt](https://nuxt.com/)](https://img.shields.io/badge/Nuxt-3.0.0-61DAFB.svg)] | 3.0.0 | Nuxt frontend framework |
-| [![React](https://react.dev/)](https://img.shields.io/badge/React-19.0-61DAFB.svg) | 19.0 | React library for UI |
-| [![TypeScript](https://www.typescriptlang.org/)](https://img.shields.io/badge/TypeScript-5.0-3178C6.svg) | 5.0 | Type-safe JavaScript |
+| [![React](https://react.dev/)](https://img.shields.io/badge/React-19.0-61DAFB.svg) | 19 | React frontend framework |
+| [![Vite](https://vitejs.dev/)](https://img.shields.io/badge/Vite-Latest-646CFF.svg) | Latest | Vite frontend framework |
+| [![TypeScript](https://www.typescriptlang.org/)](https://img.shields.io/badge/TypeScript-5-3178C6.svg) | 5 | Type-safe JavaScript |
 
 ### Backend
 
 | Technology | Version | Description |
 |------------|---------|-------------|
-| [![Django](https://www.djangoproject.com/)](https://img.shields.io/badge/Django-5.0-009688.svg)] | 5.0 | Django backend framework |
-| [![Haystack](https://github.com/deepset-ai/haystack)](https://img.shields.io/badge/Haystack-2.11.0-red.svg) | 2.11.0 | Haystack AI SDK |
-| [![Python](https://www.python.org/)](https://img.shields.io/badge/Python-3.12%2B-3776AB.svg) | 3.12+ | Python runtime (if applicable) |
+| [![Django](https://www.djangoproject.com/)](https://img.shields.io/badge/Django-5.0-092E20.svg) | 5.0 | Django backend/framework |
+| [![Haystack](https://github.com/deepset-ai/haystack)](https://img.shields.io/badge/Haystack-2.x-red.svg) | 2.x | Haystack backend/framework |
+| [![Python](https://www.python.org/)](https://img.shields.io/badge/Python-3.12%2B-3776AB.svg) | 3.12+ | Python backend/framework |
 
 ### Deployment
 
 | Platform | Purpose |
 |----------|---------|
-| [![Render](https://render.com/)](https://img.shields.io/badge/Deploy-Render-informational.svg) | Primary deployment platform |
-| Docker | Containerization |
-| GitHub Actions | CI/CD pipeline |
+| [![Render](https://img.shields.io/badge/Deploy-Render-informational.svg)](https://render.com/) | Primary deployment platform |
+| [![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED.svg)](https://docker.com/) | docker |
+| [![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-success.svg)](https://github.com/features/actions) | github actions |
 
 ---
 
@@ -119,8 +122,8 @@ This project provides a complete, working solution to these challenges.
 #### ✅ Completed Features
 
 - Core Haystack integration
-- Nuxt frontend with TypeScript
-- Django backend API
+- Modern frontend with TypeScript
+- Backend API framework
 - PostgreSQL database setup
 - Redis caching layer
 - Authentication system
@@ -275,44 +278,30 @@ docker-compose down
 ## 📁 Project Structure
 
 ```
-
 AI-SDK-HAYSTACK/
   CLAUDE.md
   CONTRIBUTING.md
   LICENSE
   README.md
-  docker-compose.yml
-  render.yaml
   frontend/
-    Dockerfile
-    app.vue
-    nuxt.config.ts
-    package.json
-    tsconfig.json
-    types/
-    composables/
-      useApi.ts
-    stores/
-      documents.ts
-      rag.ts
-    components/
-      DocumentsModal.vue
-      StatsModal.vue
-    assets/
-      css/
-        main.css
-    pages/
-      index.vue
+    src/
+      components/
+      lib/
+      app/
   backend/
-    Dockerfile
-...
+    app/
+      api/
+      models/
+      services/
+    tests/
+  docs/
 ```
 
 ### Key Files and Directories
 
 | Path | Purpose |
 |------|---------|
-| `frontend/app/` | Frontend application code (Nuxt) |
+| `frontend/src/` | Frontend application code |
 | `frontend/components/` | Reusable UI components |
 | `frontend/lib/` | Utility functions and helpers |
 | `backend/app/` | Backend application code |
@@ -333,12 +322,12 @@ AI-SDK-HAYSTACK/
 graph TB
     subgraph "Client Layer"
         A[User Browser]
-        B[Nuxt Frontend]
+        B[Frontend]
     end
 
     subgraph "API Layer"
         C[API Gateway]
-        D[Django Backend]
+        D[Backend API]
         E[Authentication]
     end
 
@@ -374,8 +363,8 @@ graph TB
 
 **Architecture Overview:**
 
-1. **Client Layer**: Nuxt provides responsive UI with real-time updates
-2. **API Layer**: Django handles business logic and request routing
+1. **Client Layer**: Modern frontend provides responsive UI with real-time updates
+2. **API Layer**: Backend framework handles business logic and request routing
 3. **AI Layer**: Haystack orchestrates AI model interactions and workflows
 4. **Data Layer**: Persistent storage with caching for optimal performance
 
@@ -524,7 +513,7 @@ v1.0.0    # Major release (breaking changes)
 
 Release names follow the pattern: **[SDK Name] [Version]**
 
-Example: "LangChain 0.3.0", "CrewAI 0.28.0"
+Example: "Haystack 2.x"
 
 ### Versioning Strategy
 
@@ -652,6 +641,7 @@ ENABLE_ANALYTICS=false
 | File | Location | Purpose |
 |------|----------|---------|
 | `next.config.js` | `frontend/` | Next.js configuration |
+| `vite.config.ts` | `frontend/` | Vite configuration |
 | `tsconfig.json` | `frontend/` | TypeScript configuration |
 | `tailwind.config.js` | `frontend/` | Tailwind CSS configuration |
 | `pytest.ini` | `backend/` | Pytest configuration |
@@ -1006,8 +996,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full list of contributors.
 ### Acknowledgments
 
 - **Haystack Team** - For the amazing AI SDK
-- **Nuxt Team** - For the excellent frontend framework
-- **Django Team** - For the robust backend framework
+- **React Team** - For the excellent frontend framework
+- **FastAPI/Django/Flask Team** - For the robust backend framework
 - **Open Source Community** - For inspiration and feedback
 
 ### Related Projects
