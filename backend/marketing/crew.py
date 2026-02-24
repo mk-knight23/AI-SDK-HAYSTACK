@@ -6,9 +6,11 @@ comprehensive marketing campaigns for trend analysis products.
 """
 
 from crewai import Agent, Crew, Process, Task
-from crewai.tools import tool
 from typing import Dict, List, Any
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class MarketingCrew:
@@ -225,19 +227,43 @@ class MarketingCrew:
         Returns:
             Dictionary with campaign results from all agents
         """
-        result = self.crew.kickoff(inputs=campaign_input)
+        try:
+            logger.info(f"Starting campaign generation for topic: {campaign_input.get('campaign_topic')}")
 
-        return {
-            "success": True,
-            "campaign_topic": campaign_input.get("campaign_topic"),
-            "results": result,
-            "agents_used": [
-                "ContentStrategist",
-                "Copywriter",
-                "SEOExpert",
-                "CampaignManager"
-            ]
-        }
+            # Validate required fields
+            required_fields = ['campaign_topic', 'target_audience', 'campaign_goals', 'key_messages']
+            missing_fields = [field for field in required_fields if field not in campaign_input]
+
+            if missing_fields:
+                logger.error(f"Missing required fields: {missing_fields}")
+                return {
+                    "success": False,
+                    "error": f"Missing required fields: {', '.join(missing_fields)}",
+                    "campaign_topic": campaign_input.get("campaign_topic")
+                }
+
+            result = self.crew.kickoff(inputs=campaign_input)
+
+            logger.info(f"Campaign generation completed successfully for topic: {campaign_input.get('campaign_topic')}")
+
+            return {
+                "success": True,
+                "campaign_topic": campaign_input.get("campaign_topic"),
+                "results": result,
+                "agents_used": [
+                    "ContentStrategist",
+                    "Copywriter",
+                    "SEOExpert",
+                    "CampaignManager"
+                ]
+            }
+        except Exception as e:
+            logger.error(f"Error during campaign generation: {e}", exc_info=True)
+            return {
+                "success": False,
+                "error": str(e),
+                "campaign_topic": campaign_input.get("campaign_topic")
+            }
 
 
 def create_marketing_crew(openai_api_key: str = None) -> MarketingCrew:
