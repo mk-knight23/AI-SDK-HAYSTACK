@@ -1,43 +1,80 @@
 version: '3.8'
 
 services:
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: trendfactory
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+  # Qdrant Vector Database
+  qdrant:
+    image: qdrant/qdrant:v1.12.0
     ports:
-      - "5432:5432"
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6334
 
+  # Optional: Elasticsearch for hybrid search
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    profiles:
+      - hybrid  # Only start with --profile hybrid
+
+  # Django Backend
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     environment:
       DEBUG: "True"
-      SECRET_KEY: django-insecure-dev-key-change-in-production
-      DATABASE_URL: postgres://postgres:postgres@db:5432/trendfactory
+      SECRET_KEY: ${SECRET_KEY:-django-insecure-dev-key-change-in-production}
       ALLOWED_HOSTS: localhost,127.0.0.1,backend
-      CORS_ALLOWED_ORIGINS: http://localhost:3000,http://frontend:3000
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000,http://localhost:3001}
+      # Vector Store Configuration
+      QDRANT_URL: http://qdrant:6333
+      QDRANT_IN_MEMORY: "false"
+      # LLM Configuration
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY}
+      MISTRAL_LLM_MODEL: ${MISTRAL_LLM_MODEL:-mistral-small}
+      # Optional: OpenAI fallback
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      # Optional: Elasticsearch for hybrid search
+      ELASTICSEARCH_URL: http://elasticsearch:9200
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - qdrant
+      - elasticsearch
     volumes:
       - ./backend:/app
     command: >
-      sh -c "python manage.py migrate && 
-             python manage.py runserver 0.0.0.0:8000"
+      sh -c "
+        python manage.py migrate &&
+        python manage.py runserver 0.0.0.0:8000
+      "
 
+  # Nuxt Frontend
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     environment:
-      NUXT_PUBLIC_API_BASE: http://localhost:8000
+      NUXT_PUBLIC_API_BASE: ${NUXT_PUBLIC_API_BASE:-http://localhost:8000/api/v1}
     ports:
       - "3000:3000"
     depends_on:
       - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.nuxt
 
 volumes:
-  postgres_data:
+  qdrant_data:
+  elasticsearch_data:
