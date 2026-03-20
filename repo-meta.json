@@ -1,0 +1,13 @@
+{
+  "name": "AI-SDK-HAYSTACK",
+  "title": "Haystack Pipeline Forge",
+  "description": "Composable retrieval and NLP pipelines for production intelligence",
+  "topics": [
+    "haystack",
+    "pipelines",
+    "search",
+    "rag",
+    "nlp"
+  ],
+  "homepage": "https://mk-knight23.github.io/AI-SDK-HAYSTACK"
+}
